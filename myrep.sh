@@ -2,7 +2,7 @@
 
 # 0 option
 DOWNLOAD="~/Downloads"
-INSTALL="./"
+INSTALL=`pwd`
 SKIP=false
 while getopts t:f:i:s: option
 do
@@ -21,13 +21,11 @@ while [ ${#TIME} -lt 6 ]; do
 done
 
 # 2.get newest log file
-if [ true ]; then
-    char=`ls -lt $1 |grep "tar.gz"| awk '{print $9; exit}'`
-    echo "newest log:" $char
-    rm -rf /tmp/log
-    mkdir /tmp/log
-    tar -xzvf $1/${char} -C /tmp/log 
-fi
+char=`ls -lt ~/Downloads |grep "tar.gz"| awk '{print $9; exit}'`
+echo "newest log:" $char
+rm -rf /tmp/log
+mkdir /tmp/log
+tar -xzvf ~/Downloads/${char} -C /tmp/log
 cd /tmp/log
 
 char=`ls -lt |grep "log"| awk '{print $9; exit}'`
